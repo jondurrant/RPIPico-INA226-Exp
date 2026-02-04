@@ -1,0 +1,3 @@
+[submodule "lib/ina226"]
+	path = lib/ina226
+	url = https://github.com/libdriver/ina226
