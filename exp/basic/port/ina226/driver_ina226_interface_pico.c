@@ -75,7 +75,7 @@ uint8_t ina226_interface_iic_deinit(void)
  * @note       none
  */
 uint8_t ina226_interface_iic_read(uint8_t addr, uint8_t reg, uint8_t *buf, uint16_t len){
-	uint8_t a =0x40;
+	uint8_t a =addr >> 1;
 	int count = i2c_write_blocking (i2c0,  a, &reg,  1,  true);
 	if (count <=0){
 		return -1;
@@ -98,9 +98,8 @@ uint8_t ina226_interface_iic_read(uint8_t addr, uint8_t reg, uint8_t *buf, uint1
  *            - 1 write failed
  * @note      none
  */
-uint8_t ina226_interface_iic_write(uint8_t addr, uint8_t reg, uint8_t *buf, uint16_t len)
-{
-	uint8_t a = 0x40;
+uint8_t ina226_interface_iic_write(uint8_t addr, uint8_t reg, uint8_t *buf, uint16_t len){
+	uint8_t a =addr >> 1;
 	uint8_t *b = malloc(len+1);
 	if (b == NULL){
 		return -1;
